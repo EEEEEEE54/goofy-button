@@ -3,92 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spinner Wheel</title>
+    <title>Index</title>
     <style>
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f5f5dc;
+            background-color: #f5f5dc; /* Cream-colored background */
             margin: 0;
             flex-direction: column;
         }
-        .wheel-container {
-            position: relative;
-            width: 300px;
-            height: 300px;
-        }
-        .wheel {
-            width: 100%;
-            height: 100%;
+        .button, .settings-button {
+            width: 150px;
+            height: 150px;
+            background-color: red;
+            border: none;
             border-radius: 50%;
-            border: 10px solid black;
-            position: absolute;
-            overflow: hidden;
-            transform: rotate(0deg);
-            transition: transform 3s ease-out;
+            color: black;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin: 10px;
         }
-        .arrow {
-            position: absolute;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 0;
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
-            border-bottom: 20px solid black;
+        .button:active, .settings-button:active {
+            transform: translateY(4px);
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
         }
-        .result {
-            margin-top: 20px;
-            font-size: 24px;
-            font-weight: bold;
+        .settings-button {
+            background-color: blue;
+            height: 50px;
+            width: 200px;
+            border-radius: 10px;
+            color: white;
+            font-size: 18px;
+            text-align: center;
+            line-height: 50px;
         }
     </style>
 </head>
 <body>
-    <div class="wheel-container">
-        <div class="arrow"></div>
-        <div class="wheel" id="wheel"></div>
-    </div>
-    <button onclick="spinWheel()">Spin</button>
-    <div class="result" id="result"></div>
+    <button class="settings-button" onclick="toggleSpeedrun()">Speedrun Mode: OFF</button>
+    <button class="button" onclick="startTransition()">Press</button>
     
     <script>
-        function spinWheel() {
-            const wheel = document.getElementById("wheel");
-            const options = [
-                "goofiest spinner ever lol",
-                ":O. secret message click me for reward",
-                "You have been cursed with bad luck!"
-            ];
-            const randomDegree = 1440 + Math.floor(Math.random() * 360);
-            wheel.style.transform = `rotate(${randomDegree}deg)`;
-            
-            new Audio('spinner-spin.mp3').play(); // Play spin sound
+        let speedrunMode = false;
+        let startTime;
 
+        function toggleSpeedrun() {
+            speedrunMode = !speedrunMode;
+            document.querySelector(".settings-button").innerText = "Speedrun Mode: " + (speedrunMode ? "ON" : "OFF");
+
+            if (speedrunMode) {
+                localStorage.setItem("speedrunStart", Date.now());
+            } else {
+                localStorage.removeItem("speedrunStart");
+            }
+        }
+
+        function startTransition() {
+            const button = document.querySelector(".button");
+            button.disabled = true;
+
+            if (speedrunMode) {
+                startTime = Date.now();
+                localStorage.setItem("speedrunStart", startTime);
+            }
+
+            new Audio('button-click.mp3').play(); // Funny sound
             setTimeout(() => {
-                const selectedIndex = Math.floor(((randomDegree % 360) / 120));
-                const resultText = options[selectedIndex];
-                const resultElement = document.getElementById("result");
-                resultElement.innerText = resultText;
-
-                if (resultText === ":O. secret message click me for reward") {
-                    resultElement.style.color = "blue";
-                    resultElement.style.cursor = "pointer";
-                    resultElement.onclick = () => {
-                        window.location.href = "index.html";
-                    };
-                } else {
-                    setTimeout(() => {
-                        window.location.href = "password.html";
-                    }, 1500);
-                }
-            }, 3000);
+                window.location.href = "spinner.html";
+            }, 1500);
         }
     </script>
 </body>
