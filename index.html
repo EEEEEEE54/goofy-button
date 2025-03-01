@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5dc; /* Cream-colored background */
+            margin: 0;
+            flex-direction: column;
+        }
+        .button {
+            width: 150px;
+            height: 150px;
+            background-color: red;
+            border: none;
+            border-radius: 50%;
+            color: black;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .button:active {
+            transform: translateY(4px);
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <button class="button" onclick="startTransition()">Press</button>
+    
+    <script>
+        function startTransition() {
+            const button = document.querySelector(".button");
+            button.disabled = true;
+            setTimeout(() => {
+                window.location.href = "spinner.html";
+            }, 1500); /* Changed delay to 1.5 seconds */
+        }
+    </script>
+</body>
+</html>
