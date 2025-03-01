@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Time</title>
+    <title>Password Page</title>
     <style>
         body {
             display: flex;
@@ -17,19 +17,13 @@
         }
         .container {
             text-align: center;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
         }
         input {
             padding: 10px;
             font-size: 16px;
-            margin: 10px 0;
+            margin-top: 10px;
             border: 1px solid #aaa;
             border-radius: 5px;
-            display: block;
-            width: 100%;
         }
         button {
             padding: 10px 20px;
@@ -44,29 +38,69 @@
         button:hover {
             background-color: #5a67d8;
         }
+        #complaint-box-container {
+            display: none;
+            margin-top: 10px;
+        }
+        #complaint-box {
+            padding: 10px;
+            font-size: 16px;
+            width: 200px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+        }
+        #big-text {
+            font-size: 150px;
+            font-weight: bold;
+            color: red;
+            margin-top: 20px;
+            display: none;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Login</h2>
-        <input type="text" id="username" placeholder="Username">
-        <input type="password" id="password" placeholder="Password">
-        <button onclick="checkLogin()">Login</button>
+        <h2 id="title">Password Please</h2>
+        <input type="password" id="password" placeholder="Enter password">
+        <button onclick="submitPassword()">OK</button>
+        <p id="message" style="display: none; font-size: 18px; font-weight: bold; margin-top: 10px;"></p>
+        <div id="complaint-box-container">
+            <input type="text" id="complaint-box" placeholder="Complaint Box">
+            <button onclick="submitComplaint()">Send</button>
+        </div>
+        <p id="big-text">NAH ID WIN.</p>
     </div>
     
     <script>
-        function checkLogin() {
-            let username = document.getElementById("username").value;
-            let password = document.getElementById("password").value;
-
-            if (username === "button website admin" && password === "0182fried") {
-                if (localStorage.getItem("speedrunStart")) {
-                    let elapsed = (Date.now() - localStorage.getItem("speedrunStart")) / 1000;
-                    alert("Speedrun complete! Time: " + elapsed + " seconds.");
-                }
-                window.location.href = "the-end.html";
-            } else {
-                alert("Incorrect username or password.");
+        function submitPassword() {
+            document.getElementById("password").style.display = "none";
+            document.querySelector("button").style.display = "none";
+            document.getElementById("title").style.display = "none";
+            document.getElementById("message").innerText = "haha I took your password to Narnia";
+            document.getElementById("message").style.display = "block";
+            
+            setTimeout(() => {
+                document.getElementById("complaint-box-container").style.display = "block";
+            }, 900);
+        }
+        
+        function submitComplaint() {
+            let complaint = document.getElementById("complaint-box").value.toLowerCase();
+            if (complaint === "hey buddy im an admin") {
+                document.body.innerHTML = "";
+                setTimeout(() => {
+                    window.location.href = "login-time.html";
+                }, 1000);
+                return;
+            }
+            
+            if (complaint === "bro why") {
+                document.getElementById("message").innerText = "idk";
+            } else if (complaint === "then ill just go to narnia. *goes to narnia*") {
+                document.getElementById("message").innerText = "nah id win";
+                setTimeout(() => {
+                    document.getElementById("big-text").style.display = "block";
+                }, 1000);
             }
         }
     </script>
