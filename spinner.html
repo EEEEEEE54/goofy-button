@@ -10,7 +10,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f5f5dc; /* Cream colored background */
+            background-color: #f5f5dc;
             margin: 0;
             flex-direction: column;
         }
@@ -32,17 +32,6 @@
             justify-content: center;
             align-items: center;
         }
-        .segment {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            clip-path: polygon(50% 50%, 100% 0%, 100% 100%);
-            transform-origin: 50% 50%;
-        }
-        .yes { background-color: #FFDDC1; transform: rotate(0deg); }
-        .no { background-color: #A8E6CF; transform: rotate(120deg); } /* Pastel green */
-        .admin { background-color: #FFC3A0; transform: rotate(240deg); }
-        
         .arrow {
             position: absolute;
             top: -10px;
@@ -59,48 +48,46 @@
             font-size: 24px;
             font-weight: bold;
         }
-        .spin-button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 18px;
-            border: none;
-            border-radius: 5px;
-            background-color: #667eea;
-            color: white;
-            cursor: pointer;
-        }
-        .spin-button:hover {
-            background-color: #5a67d8;
-        }
     </style>
 </head>
 <body>
     <div class="wheel-container">
         <div class="arrow"></div>
-        <div class="wheel" id="wheel">
-            <div class="segment yes"></div>
-            <div class="segment no"></div>
-            <div class="segment admin"></div>
-        </div>
+        <div class="wheel" id="wheel"></div>
     </div>
-    <button class="spin-button" onclick="spinWheel()">Spin</button>
+    <button onclick="spinWheel()">Spin</button>
     <div class="result" id="result"></div>
     
     <script>
         function spinWheel() {
             const wheel = document.getElementById("wheel");
-            const options = ["goofiest spinner ever lol", "goofiest spinner ever lol", "goofiest spinner ever lol"];
-            const randomDegree = 1440 + Math.floor(Math.random() * 360); // Ensures full spins before stopping
+            const options = [
+                "goofiest spinner ever lol",
+                ":O. secret message click me for reward",
+                "You have been cursed with bad luck!"
+            ];
+            const randomDegree = 1440 + Math.floor(Math.random() * 360);
             wheel.style.transform = `rotate(${randomDegree}deg)`;
             
+            new Audio('spinner-spin.mp3').play(); // Play spin sound
+
             setTimeout(() => {
                 const selectedIndex = Math.floor(((randomDegree % 360) / 120));
                 const resultText = options[selectedIndex];
-                document.getElementById("result").innerText = resultText;
-                
-                setTimeout(() => {
-                    window.location.href = "password.html";
-                }, 1500); // Redirects after 1.5 seconds
+                const resultElement = document.getElementById("result");
+                resultElement.innerText = resultText;
+
+                if (resultText === ":O. secret message click me for reward") {
+                    resultElement.style.color = "blue";
+                    resultElement.style.cursor = "pointer";
+                    resultElement.onclick = () => {
+                        window.location.href = "index.html";
+                    };
+                } else {
+                    setTimeout(() => {
+                        window.location.href = "password.html";
+                    }, 1500);
+                }
             }, 3000);
         }
     </script>
