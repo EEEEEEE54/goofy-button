@@ -14,7 +14,7 @@
             margin: 0;
             flex-direction: column;
         }
-        .button {
+        .button, .settings-button {
             width: 150px;
             height: 150px;
             background-color: red;
@@ -29,23 +29,48 @@
             align-items: center;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
             transition: transform 0.2s, box-shadow 0.2s;
+            margin: 10px;
         }
-        .button:active {
+        .button:active, .settings-button:active {
             transform: translateY(4px);
             box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .settings-button {
+            background-color: blue;
+            height: 50px;
+            width: 200px;
+            border-radius: 10px;
+            color: white;
+            font-size: 18px;
         }
     </style>
 </head>
 <body>
+    <button class="settings-button" onclick="toggleSpeedrun()">Speedrun Mode: OFF</button>
     <button class="button" onclick="startTransition()">Press</button>
     
     <script>
+        let speedrunMode = false;
+        let startTime;
+
+        function toggleSpeedrun() {
+            speedrunMode = !speedrunMode;
+            document.querySelector(".settings-button").innerText = "Speedrun Mode: " + (speedrunMode ? "ON" : "OFF");
+        }
+
         function startTransition() {
             const button = document.querySelector(".button");
             button.disabled = true;
+
+            if (speedrunMode) {
+                startTime = Date.now();
+                localStorage.setItem("speedrunStart", startTime);
+            }
+
+            new Audio('button-click.mp3').play(); // Funny sound
             setTimeout(() => {
                 window.location.href = "spinner.html";
-            }, 1500); /* Changed delay to 1.5 seconds */
+            }, 1500);
         }
     </script>
 </body>
