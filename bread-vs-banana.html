@@ -40,15 +40,31 @@
     
     <script>
         function vote(team) {
+            if (localStorage.getItem("hasVoted")) {
+                alert("You have already voted! No switching sides.");
+                return;
+            }
+
             let votes = localStorage.getItem(team + 'Votes');
             votes = votes ? parseInt(votes) + 1 : 1;
             localStorage.setItem(team + 'Votes', votes);
+            localStorage.setItem("hasVoted", "true"); // Lock their vote
+
             window.location.href = "team-" + team + ".html";
         }
-        
+
         function displayVoteCounts() {
             document.getElementById('bananaVotes').innerText = `Team Banana: ${localStorage.getItem('bananaVotes') || 0} votes`;
             document.getElementById('breadVotes').innerText = `Team Bread: ${localStorage.getItem('breadVotes') || 0} votes`;
+
+            // Disable voting buttons if already voted
+            if (localStorage.getItem("hasVoted")) {
+                document.querySelectorAll(".vote-button").forEach(button => {
+                    button.disabled = true;
+                    button.style.opacity = "0.5";
+                    button.innerText = "Vote Locked";
+                });
+            }
         }
     </script>
 </body>
