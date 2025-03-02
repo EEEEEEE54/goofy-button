@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uh Oh!</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffcccb; /* Light red/pink background */
+            margin: 0;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            font-size: 50px;
+        }
+        p {
+            font-size: 20px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            background-color: yellow;
+            color: black;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: gold;
+        }
+    </style>
+</head>
+<body>
+    <h1>UH OH!</h1>
+    <p>You weren't supposed to see this page... 👀</p>
+    <button onclick="goBack()">Run Away!</button>
+    
+    <script>
+        function goBack() {
+            alert("Too late! You've been cursed with eternal silliness! 😆");
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>
