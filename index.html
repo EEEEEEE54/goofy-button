@@ -44,8 +44,11 @@
             const button = document.querySelector(".button");
             button.disabled = true;
             setTimeout(() => {
-                window.location.href = "spinner.html";
-            }, 1500); /* Changed delay to 1.5 seconds */
+    const pages = ["spinner.html", "password.html"];
+    const randomPage = pages[Math.floor(Math.random() * pages.length)];
+    window.location.href = randomPage;
+}, 1500);
+
         }
     </script>
 </body>
