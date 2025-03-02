@@ -46,20 +46,26 @@
     </style>
 </head>
 <body>
-    <h1>WACKY PAGE! 🤪</h1>
-    <p>This page is totally unpredictable! Click below... if you dare! 😱</p>
-    <button onclick="surprise()">Click for Chaos</button>
+    <h1>bread!</h1>
+    <p><h2>🗿</h2></p>
+    <button onclick="surprise()">﹖</button>
     
     <script>
         function surprise() {
+            const bananaMessage = "Oh no, you triggered the dancing banana! 🍌💃";
             const messages = [
-                "Boom! Now your device is covered in virtual glitter! ✨",
-                "Oh no, you triggered the dancing banana! 🍌💃",
-                "Congratulations, you unlocked a secret… but it's still a secret. 🤫",
-                "Oops! A wormhole just opened behind you! 👀",
-                "You are now the official ruler of WackyLand! 👑"
+                "🍞",
+                "🥖",
+                "secret!",
+                "🥨",
+                "🥯",
+                "🥐"
             ];
-            alert(messages[Math.floor(Math.random() * messages.length)]);
+            let message = messages[Math.floor(Math.random() * messages.length)];
+            alert(message);
+            if (message === bananaMessage) {
+                window.location.href = "secretbanana.html";
+            }
         }
     </script>
 </body>
