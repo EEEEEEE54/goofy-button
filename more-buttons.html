@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More Buttons!</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #ffdd57;
+            font-family: Comic Sans MS, cursive, sans-serif;
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 20px;
+            border: none;
+            border-radius: 10px;
+            background-color: #ff6347;
+            color: white;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #e5533d;
+        }
+    </style>
+</head>
+<body>
+    <h1>MORE BUTTONS! 🚀</h1>
+    <p>Every time you click, another button appears. What happens if you reach 10? 🤔</p>
+    <div id="button-container">
+        <button onclick="addButton()">Click Me!</button>
+    </div>
+    
+    <script>
+        let buttonCount = 1;
+        function addButton() {
+            buttonCount++;
+            let newButton = document.createElement("button");
+            newButton.innerText = "Button " + buttonCount;
+            newButton.onclick = addButton;
+            document.getElementById("button-container").appendChild(newButton);
+            
+            if (buttonCount === 10) {
+                setTimeout(() => {
+                    window.location.href = "secretbutton.html";
+                }, 500);
+            }
+        }
+    </script>
+</body>
+</html>

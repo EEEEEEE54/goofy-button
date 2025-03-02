@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bread vs. Banana War</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f5e1a4;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .vote-button {
+            padding: 15px 30px;
+            font-size: 20px;
+            border: none;
+            border-radius: 10px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        .bread { background-color: #f4a261; color: white; }
+        .banana { background-color: #f4d35e; color: black; }
+        .vote-button:hover { opacity: 0.8; }
+    </style>
+</head>
+<body>
+    <h1>🍞 BREAD vs. 🍌 BANANA WAR!</h1>
+    <p>Pick your side wisely. This war has been going on for centuries. Which team are you on?</p>
+    
+    <button class="vote-button bread" onclick="vote('bread')">🥖 Team Bread</button>
+    <button class="vote-button banana" onclick="vote('banana')">🍌 Team Banana</button>
+    
+    <h2 id="result">Current Votes: Loading...</h2>
+    
+    <script>
+        function vote(team) {
+            localStorage.setItem("teamChoice", team);
+            window.location.href = "team-" + team + ".html";
+        }
+        
+        // Display the current choice if user already voted
+        const savedTeam = localStorage.getItem("teamChoice");
+        if (savedTeam) {
+            document.getElementById("result").innerText = "You are on Team " + savedTeam.toUpperCase() + "!";
+        }
+    </script>
+</body>
+</html>

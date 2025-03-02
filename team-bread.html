@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Bread 🥖</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4a261;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: white;
+        }
+        h1 {
+            font-size: 50px;
+        }
+        p {
+            font-size: 20px;
+        }
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #264653;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .back-button:hover {
+            background-color: #1d3557;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Team Bread! 🥖</h1>
+    <p>You have chosen wisely. Bread is the foundation of civilization. Toast, sandwiches, baguettes—endless possibilities.</p>
+    <button class="back-button" onclick="goBack()">Change Your Mind?</button>
+    
+    <script>
+        function goBack() {
+            localStorage.removeItem("teamChoice");
+            window.location.href = "bread_vs_banana.html";
+        }
+    </script>
+</body>
+</html>
