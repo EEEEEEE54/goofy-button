@@ -28,25 +28,27 @@
         .vote-button:hover { opacity: 0.8; }
     </style>
 </head>
-<body>
+<body onload="displayVoteCounts()">
     <h1>🍞 BREAD vs. 🍌 BANANA WAR!</h1>
     <p>Pick your side wisely. This war has been going on for centuries. Which team are you on?</p>
     
     <button class="vote-button bread" onclick="vote('bread')">🥖 Team Bread</button>
     <button class="vote-button banana" onclick="vote('banana')">🍌 Team Banana</button>
     
-    <h2 id="result">Current Votes: Loading...</h2>
+    <h2 id="bananaVotes">Loading...</h2>
+    <h2 id="breadVotes">Loading...</h2>
     
     <script>
         function vote(team) {
-            localStorage.setItem("teamChoice", team);
+            let votes = localStorage.getItem(team + 'Votes');
+            votes = votes ? parseInt(votes) + 1 : 1;
+            localStorage.setItem(team + 'Votes', votes);
             window.location.href = "team-" + team + ".html";
         }
         
-        // Display the current choice if user already voted
-        const savedTeam = localStorage.getItem("teamChoice");
-        if (savedTeam) {
-            document.getElementById("result").innerText = "You are on Team " + savedTeam.toUpperCase() + "!";
+        function displayVoteCounts() {
+            document.getElementById('bananaVotes').innerText = `Team Banana: ${localStorage.getItem('bananaVotes') || 0} votes`;
+            document.getElementById('breadVotes').innerText = `Team Bread: ${localStorage.getItem('breadVotes') || 0} votes`;
         }
     </script>
 </body>
