@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wacky Surprise</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #b3ffb3; /* Light green */
+            margin: 0;
+            flex-direction: column;
+            font-family: Comic Sans MS, cursive, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            font-size: 60px;
+            transform: rotate(-5deg);
+        }
+        p {
+            font-size: 22px;
+            animation: wiggle 1s infinite alternate;
+        }
+        @keyframes wiggle {
+            from { transform: rotate(-3deg); }
+            to { transform: rotate(3deg); }
+        }
+        button {
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 20px;
+            border: none;
+            border-radius: 10px;
+            background-color: orange;
+            color: white;
+            cursor: pointer;
+            transform: rotate(2deg);
+        }
+        button:hover {
+            background-color: darkorange;
+            transform: scale(1.1) rotate(-2deg);
+        }
+    </style>
+</head>
+<body>
+    <h1>WACKY PAGE! 🤪</h1>
+    <p>This page is totally unpredictable! Click below... if you dare! 😱</p>
+    <button onclick="surprise()">Click for Chaos</button>
+    
+    <script>
+        function surprise() {
+            const messages = [
+                "Boom! Now your device is covered in virtual glitter! ✨",
+                "Oh no, you triggered the dancing banana! 🍌💃",
+                "Congratulations, you unlocked a secret… but it's still a secret. 🤫",
+                "Oops! A wormhole just opened behind you! 👀",
+                "You are now the official ruler of WackyLand! 👑"
+            ];
+            alert(messages[Math.floor(Math.random() * messages.length)]);
+        }
+    </script>
+</body>
+</html>
