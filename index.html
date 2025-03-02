@@ -3,105 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spinner Wheel</title>
+    <title>Index</title>
     <style>
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f5f5dc; /* Cream colored background */
+            background-color: #f5f5dc; /* Cream-colored background */
             margin: 0;
             flex-direction: column;
         }
-        .wheel-container {
-            position: relative;
-            width: 300px;
-            height: 300px;
-        }
-        .wheel {
-            width: 100%;
-            height: 100%;
+        .button {
+            width: 150px;
+            height: 150px;
+            background-color: red;
+            border: none;
             border-radius: 50%;
-            border: 10px solid black;
-            position: absolute;
-            overflow: hidden;
-            transform: rotate(0deg);
-            transition: transform 3s ease-out;
+            color: black;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
-        .segment {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            clip-path: polygon(50% 50%, 100% 0%, 100% 100%);
-            transform-origin: 50% 50%;
-        }
-        .yes { background-color: #FFDDC1; transform: rotate(0deg); }
-        .no { background-color: #FFABAB; transform: rotate(120deg); }
-        .admin { background-color: #FFC3A0; transform: rotate(240deg); }
-        
-        .arrow {
-            position: absolute;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 0;
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
-            border-bottom: 20px solid black;
-        }
-        .result {
-            margin-top: 20px;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .spin-button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 18px;
-            border: none;
-            border-radius: 5px;
-            background-color: #667eea;
-            color: white;
-            cursor: pointer;
-        }
-        .spin-button:hover {
-            background-color: #5a67d8;
+        .button:active {
+            transform: translateY(4px);
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
 <body>
-    <div class="wheel-container">
-        <div class="arrow"></div>
-        <div class="wheel" id="wheel">
-            <div class="segment yes"></div>
-            <div class="segment no"></div>
-            <div class="segment admin"></div>
-        </div>
-    </div>
-    <button class="spin-button" onclick="spinWheel()">Spin</button>
-    <div class="result" id="result"></div>
+    <button class="button" onclick="startTransition()">Press</button>
     
     <script>
-        function spinWheel() {
-            const wheel = document.getElementById("wheel");
-            const options = ["goofiest spinner ever lol", "goofiest spinner ever lol", "goofiest spinner ever lol"];
-            const randomDegree = 1440 + Math.floor(Math.random() * 360); // Ensures full spins before stopping
-            wheel.style.transform = `rotate(${randomDegree}deg)`;
-            
+        function startTransition() {
+            const button = document.querySelector(".button");
+            button.disabled = true;
             setTimeout(() => {
-                const selectedIndex = Math.floor(((randomDegree % 360) / 120));
-                const resultText = options[selectedIndex];
-                document.getElementById("result").innerText = resultText;
-                
-                setTimeout(() => {
-                    window.location.href = "password.html";
-                }, 1500);
-            }, 3000);
+                window.location.href = "spinner.html";
+            }, 1500); /* Changed delay to 1.5 seconds */
         }
     </script>
 </body>
